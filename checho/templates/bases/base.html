@@ -1,0 +1,114 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock%}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+
+<body>
+    <div class="contenedor">
+
+        <header class=""></header>
+        <div class="containerNav ">
+            <nav class="navbar navbar-expand-lg bg-dark ">
+                <div class="container-fluid">
+                    <div><a class="navbar-brand text-light hoverNav  " href="#">CHECHO BARBERS</a></div>
+                    <div>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon bg-secondary"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                                <li class="nav-item">
+                                    <a class="nav-link active text-light hoverNav" aria-current="page"
+                                        href="#">INICIO</a>
+                                </li>
+
+                                <li class="nav-item dropdown text-light">
+                                    <a class="nav-link dropdown-toggle text-light hoverNav" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        SERVICIOS
+                                    </a>
+                                    <ul class="dropdown-menu tama2 ">
+                                        <li><a class="dropdown-item" href="#">BARBAS</a></li>
+                                        <li><a class="dropdown-item" href="#">CORTES</a></li>
+                                        <li><a class="dropdown-item" href="#">TINTURAS</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item text-light">
+                                    <a class="nav-link text-light hoverNav" href="#">AGENDA TU CITA</a>
+                                </li>
+
+                                <li class="nav-item text-light me-5">
+                                    <a class="nav-link text-light hoverNav" href="#">CONTACTO</a>
+                                </li>
+
+
+
+                                <li class="nav-item text-light">
+                                    <a class="nav-link text-light hoverNav" href="#">INICIO SESION</a>
+                                </li>
+                                <li class="nav-item text-light">
+                                    <a class="nav-link text-light hoverNav" href="#">REGISTRARSE</a>
+                                </li>
+
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+    {%block content %}{%endblock%}
+
+
+
+
+
+
+    <footer>
+        <div class="row">
+
+            <div class="col  col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+                <h5>CHECHO BARBER</h5>
+                <p>Copyright © 2022 Todos los derechos reservados</p>
+
+            </div>
+            <div class="col  col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <h5 id="contacto">CONTACTO</h5>
+                <p> Telefono (3714526)</p>
+                <p>Gmail (chechobarber@gmail.com)</p>
+
+            </div>
+            <div class="col  col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <h5>UBICACION</h5>
+                <a target="_blank" href=""><img src="{% static 'img/maps.jpg' %}" alt="maps" id="im4"></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+    <script src="{%static 'js/controller.js' %}"></script>
+</body>
+
+</html>
