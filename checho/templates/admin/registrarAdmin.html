@@ -1,0 +1,49 @@
+{% extends 'bases/base.html' %}
+{% block title %}CHECHO BARBERS REGISTRO{% endblock%}
+
+{%block content %}
+
+<div style="text-align: center;  padding-top: 10em; ">
+
+    <section class="container ">
+        <div class=" py-3">
+            <form action="{% url 'checho:guardarAdmin' %}" method="post">{% csrf_token %}
+                <div class="row g-3 my-5">
+                    <h1 style="color: white; ">REGISTAR ADMIN</h1>
+                    <div class="col">
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" aria-label="First name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="apellido" placeholder="Apellido" aria-label="Last name">
+                    </div>
+
+                </div>
+                <div class="row g-3 my-5">
+                    <div class="col">
+                        <input type="text" class="form-control" name="telefono" placeholder="Numero Telefono" aria-label="Last name">
+                    </div>
+
+                </div>
+                <div class="row g-3 my-5">
+                    <div class="col">
+                        <input type="text" class="form-control" name="user" placeholder="Usuario" aria-label="Last name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control"  name="passw"   placeholder="Contraseña" aria-label="Last name">
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-success">REGISTAR</button>
+                </div><br>
+            </form>
+
+        </div>
+
+
+    </section><br>
+
+</div>
+
+
+{%endblock%}

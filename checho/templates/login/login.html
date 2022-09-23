@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Login</title>
+</head>
+
+<body>
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags != 'error' %}{{ message.tags }}{% else %}danger{% endif %} alert-dismissible fade show"
+        role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close"></button></div>
+    {% endfor %}
+    {% endif %}
+
+
+    <div class="login-box">
+        <h2>CHECHO BARBERS</h2>
+        <form action="{% url 'checho:ingresar' %}" method="post">{% csrf_token %}
+            <div class="user-box">
+                <input type="text" name="usua" required>
+                <label>Usuario</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="clave" required>
+                <label>Password</label>
+            </div>
+            <button type="submit" style="width:100% ;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Ingresar
+            </button>
+
+
+            <div><a class="btn bg-info my-3 w-100"  href="{% url 'checho:loginAdmin' %}">Soy Admin</a></div>
+            <div id="log">
+                <div><a class="btn bg-success" href="#">
+                    <p>Recuperar contraseña</p>
+                </a></div>
+                <div><a class="btn bg-success " href="{% url 'checho:index' %}">
+                    <p>Volver</p>
+                </a></div>
+                
+                
+            </div>
+
+
+        </form>
+
+    </div><br>
+
+
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+</body>
+
+</html>

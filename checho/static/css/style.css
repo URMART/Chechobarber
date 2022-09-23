@@ -169,15 +169,14 @@ footer {
 
 .tama2 {
     width: 330px;
-    height: 230px;
+    
     margin-top: 1em;
     margin-left: 0.5em;
     border: solid 4px rgb(54, 53, 53);
 }
 
 .tama2:hover {
-    margin: 1em;
-    border: solid 4px red;
+    border: solid 4px rgb(26, 11, 233);
 }
 
 .tama3 {
@@ -219,3 +218,21 @@ footer {
     font-size: 1.1em;
     
 }
+
+.sect3{
+    
+    background-color: rgba(139, 137, 137, 0.945);
+    text-align: center;
+    align-items: center;
+    height: 50vh;
+}
+
+#registroUser{
+    margin-top: 4em;
+}
+
+#listarServicios{
+
+    background-color: #f7f3f3;
+}
+

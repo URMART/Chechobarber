@@ -1,0 +1,55 @@
+{% extends 'bases/base.html' %}
+{% block title %}CHECHO BARBERS EMPLEADOS{% endblock%}
+
+{%block content %}
+
+
+    <div style="text-align: center;  padding-top: 10em; ">
+
+        <section class="container ">
+            <div class=" py-5">
+                
+                <form action="{% url 'checho:guardarCita' %}" method="post">{% csrf_token %}
+
+                    <div class="row g-3 my-5">
+                        <h1 style="color: white; ">AGENDAR CITA</h1>
+                        <div class="col">
+                            <h3 style="color: white; "><label for="fecha">Ingrese la fecha</label></h3>
+                            <input type="date" class="form-control" name="fecha"  aria-label="First name">
+                        </div>
+                        <div class="col">
+                            <h3 style="color: white; "><label for="hora">Ingrese la Hora</label></h3>
+                            <input type="time" class="form-control" name="hora"  aria-label="Last name">
+                        </div>
+                    </div>
+                   
+                    <div class="row g-3 my-5">
+                        
+                        <div class="col">
+                            <h3 style="color: white; "><label for="empleados" style="color: white;">Eliga el Empleado</label></h3>
+                            <select name="empleados" id="">
+                                {% for i in empleados %}
+                                <option value="{{i.id}}">{{i.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col">
+                            <h3 style="color: white; "><label for="servicios" style="color: white;">Eliga el Servicio</label></h3>
+                            <select name="servicios" id="">
+                                {% for i in servicios %}
+                                <option value="{{i.id}}">{{i.nombreServicio}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success">AGENDAR</button>
+                    </div><br>
+                </form>>
+                
+            </div>
+        </section><br>
+
+    </div>
+
+{%endblock%}

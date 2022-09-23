@@ -8,11 +8,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock%}</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
 </head>
 
 <body>
@@ -35,7 +41,11 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link active text-light hoverNav" aria-current="page"
-                                        href="#">INICIO</a>
+                                        href="{% url 'checho:index' %}">INICIO</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active text-light hoverNav" aria-current="page" href="#">VER MIS
+                                        CITAS</a>
                                 </li>
 
                                 <li class="nav-item dropdown text-light">
@@ -49,22 +59,69 @@
                                         <li><a class="dropdown-item" href="#">TINTURAS</a></li>
                                     </ul>
                                 </li>
+                                {% if request.session.logueo.2 == 'administrador' %}
+                                <li class="nav-item dropdown text-light">
+                                    <a class="nav-link dropdown-toggle text-light hoverNav" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        OPCIONES
+                                    </a>
+                                    <ul class="dropdown-menu tama2 ">
+                                        <li><a class="dropdown-item" href="{% url 'checho:listarCita' %}">LISTAR
+                                                CITAS</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'checho:listarServicios' %}">LISTAR
+                                                SERVICIOS</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'checho:listarClientes' %}">LISTAR
+                                                CLIENTES</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'checho:listarEmpleados' %}">LISTAR
+                                                EMPLEADOS</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'checho:listarAdmin' %}">LISTAR
+                                                ADMINISTRADORES</a></li>
+                                    </ul>
+                                </li>
+                                
+                                <li class="nav-item dropdown text-light">
+                                    <a class="nav-link dropdown-toggle text-light hoverNav" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        OTROS
+                                    </a>
+                                    <ul class="dropdown-menu tama2 ">
+                                        <li><a class="dropdown-item"
+                                                href="{% url 'checho:registrarEmpleado' %}">REGISTRAR EMPLEADO</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'checho:registrarAdmin' %}">REGISTRAR
+                                                ADMIN</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{% url 'checho:registrarServicio' %}">REGISTRAR SERVICIOS</a></li>
+                                    </ul>
+                                </li>
+                                {% endif %}
                                 <li class="nav-item text-light">
-                                    <a class="nav-link text-light hoverNav" href="#">AGENDA TU CITA</a>
+                                    <a class="nav-link text-light hoverNav" href="{% url 'checho:agendarCita' %}">AGENDA
+                                        TU CITA</a>
                                 </li>
 
                                 <li class="nav-item text-light me-5">
-                                    <a class="nav-link text-light hoverNav" href="#">CONTACTO</a>
+                                    <a class="nav-link text-light hoverNav" href="#contacto">CONTACTO</a>
                                 </li>
 
 
-
+                                {% if request.session.logueo %}
                                 <li class="nav-item text-light">
-                                    <a class="nav-link text-light hoverNav" href="#">INICIO SESION</a>
+                                    <a class="nav-link text-light hoverNav" href="{% url 'checho:cerraSesion' %}">CERRAR
+                                        SESION</a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item text-light">
+                                    <a class="nav-link text-light hoverNav" href="{% url 'checho:login' %}">INICIO
+                                        SESION</a>
                                 </li>
                                 <li class="nav-item text-light">
-                                    <a class="nav-link text-light hoverNav" href="#">REGISTRARSE</a>
+                                    <a class="nav-link text-light hoverNav"
+                                        href="{% url 'checho:registrarUser' %}">REGISTRARSE</a>
                                 </li>
+
+                                {% endif %}
+                                
+                                
 
 
 
@@ -76,16 +133,21 @@
             </nav>
         </div>
     </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags != 'error' %}{{ message.tags }}{% else %}danger{% endif %} alert-dismissible fade show"
+        role="alert">{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close"></button></div>
+    {% endfor %}
+    {% endif %}
+
+    <main>{%block content %}{%endblock%}</main>
 
 
-    {%block content %}{%endblock%}
 
 
 
-
-
-
-    <footer>
+    <footer style="height: 25vh ; ">
         <div class="row">
 
             <div class="col  col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
@@ -105,10 +167,9 @@
             </div>
         </div>
     </footer>
-
-
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
-    <script src="{%static 'js/controller.js' %}"></script>
+
+    <script src="{%static 'js/controller.js' %}"></script><script src="{% static 'js/jquery-3.6.1.min.js'%}"></script>
 </body>
 
 </html>

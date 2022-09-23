@@ -1,0 +1,39 @@
+{% extends 'bases/base.html' %}
+{% block title %}CHECHO BARBERS REGISTRO{% endblock%}
+
+{%block content %}
+
+<div style="text-align: center;  padding-top: 10em; ">
+
+    <section class="container ">
+        <div class=" py-3">
+
+            <form action="{% url 'checho:guardarEdicionServicio' %}" method="post">{% csrf_token %}
+
+                <div class="row g-3 my-5">
+                    <h1 style="color: white; ">EDITAR SERVICIOS</h1>
+                    <div class="col">
+                        <input type="text" class="form-control" value="{{servi.nombreServicio}}" name="nombre" placeholder="Nombre del Servicio"
+                            aria-label="First name">
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" value="{{servi.precio}}" name="precio" placeholder="Precio Servicio"
+                            aria-label="Last name">
+                    </div>
+                    <input type="hidden" name="id" value="{{servi.id}}">
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-success">REGISTAR</button>
+                </div><br>
+            </form>
+
+        </div>
+
+
+    </section><br>
+
+</div>
+
+
+{%endblock%}

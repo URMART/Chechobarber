@@ -1,0 +1,53 @@
+{% extends 'bases/base.html' %}
+{% block title %}CHECHO BARBERS ADMINISTRADORES{% endblock%}
+
+{%block content %}
+
+<div style="text-align: center;  padding-top: 10em; ">
+
+    <section class="container ">
+        <div class=" py-3">
+
+            <form action="{% url 'checho:guardadoEmpleado' %}" method="post">{% csrf_token %}
+
+                <div class="row g-3 my-5">
+                    <h1 style="color: white; ">EDITAR EMPLEADO</h1>
+                    <div class="col">
+                        <input type="text" class="form-control" value="{{empleado.nombre}}" name="nombre" placeholder="Nombre "
+                            aria-label="First name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" value="{{empleado.apellido}}" name="apellido" placeholder="Apellido"
+                            aria-label="Last name">
+                    </div>
+                    <div class="col">
+                        <input type="number" class="form-control" value="{{empleado.numeroTelefono}}" name="telefono" placeholder="numero de telefono"
+                            aria-label="Last name">
+                    </div>
+                    <div class="row g-3 my-5">
+                        <div class="col">
+                            <label for="admin" style="color: white;">Eliga el administardor</label>
+                            <select name="admin" id="">
+                                {% for i in admin %}
+                                <option value="{{i.id}}">{{i.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="{{empleado.id}}">
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-success">REGISTAR</button>
+                </div><br>
+            </form>
+
+        </div>
+
+
+    </section><br>
+
+</div>
+
+
+{%endblock%}
